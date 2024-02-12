@@ -13,6 +13,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>api-usage-tracker</name>
     <description>api-usage-tracker</description>
+    <developers>
+        <developer>
+            <name>Igbalajobi Jamiu</name>
+            <email>kreatifcode@gmail.com</email>
+            <url>https://github.com/xsyro</url>
+        </developer>
+    </developers>
     <properties>
         <java.version>17</java.version>
     </properties>
