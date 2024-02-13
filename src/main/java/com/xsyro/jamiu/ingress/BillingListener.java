@@ -1,4 +1,4 @@
-package com.xsyro.jamiu.controller;
+package com.xsyro.jamiu.ingress;
 
 import com.xsyro.jamiu.model.Egress;
 import com.xsyro.jamiu.model.Ingress;
@@ -13,19 +13,20 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/v1/api/api-billing")
-public class HttpController {
+public class BillingListener {
     private final IngressService ingressService;
 
 
-    public HttpController(IngressService ingressService) {
+    public BillingListener(IngressService ingressService) {
         this.ingressService = ingressService;
     }
 
     @PostMapping("/ingest")
     private Mono<ResponseEntity<Egress>> ingest(@Valid @RequestBody Ingress ingress) {
-//        ingressService.ingestData(ingress)
-//                .onErrorReturn(throwable ->)
-        return Mono.just(ResponseEntity.ok(Egress.builder().isSuccessful(true).msg("OK").build()));
+        return ingressService.ingestBillingData(ingress)
+                .map(ResponseEntity::ok)
+                .onErrorMap(throwable -> (Throwable) ResponseEntity.badRequest())
+                .log();
     }
 
 }

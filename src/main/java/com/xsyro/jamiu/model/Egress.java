@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Egress {
+    String errorCode;
     Boolean isSuccessful;
     String msg;
 }
