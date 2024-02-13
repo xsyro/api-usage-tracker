@@ -1,4 +1,4 @@
-package com.xsyro.jamiu.models;
+package com.xsyro.jamiu.model;
 
 public class Common {
 }

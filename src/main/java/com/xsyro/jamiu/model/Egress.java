@@ -1,4 +1,4 @@
-package com.xsyro.jamiu.payload;
+package com.xsyro.jamiu.model;
 
 import lombok.Builder;
 import lombok.Data;

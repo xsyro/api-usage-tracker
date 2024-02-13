@@ -1,14 +1,10 @@
-package com.xsyro.jamiu.payload;
+package com.xsyro.jamiu.model;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
-
-import java.util.Date;
-
-import static java.lang.System.currentTimeMillis;
 
 @Data
 public class Ingress {
@@ -17,7 +13,6 @@ public class Ingress {
     @URL
     private String endpoint;
     @NotNull
-    @NotBlank
     private Long currentMills;
     private Long responseMillis;
     private String scope;
