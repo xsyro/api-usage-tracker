@@ -1,23 +1,22 @@
-package com.xsyro.jamiu.ingest;
+package com.xsyro.jamiu.controller;
 
-import com.xsyro.jamiu.payload.Egress;
-import com.xsyro.jamiu.payload.Ingress;
-import com.xsyro.jamiu.services.IngressService;
-import jakarta.validation.ConstraintViolationException;
+import com.xsyro.jamiu.model.Egress;
+import com.xsyro.jamiu.model.Ingress;
+import com.xsyro.jamiu.service.IngressService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/v1/api/api-billing")
-@Validated
 public class HttpController {
     private final IngressService ingressService;
 
-    //
+
     public HttpController(IngressService ingressService) {
         this.ingressService = ingressService;
     }
@@ -26,18 +25,7 @@ public class HttpController {
     private Mono<ResponseEntity<Egress>> ingest(@Valid @RequestBody Ingress ingress) {
 //        ingressService.ingestData(ingress)
 //                .onErrorReturn(throwable ->)
-        return Mono.empty();
+        return Mono.just(ResponseEntity.ok(Egress.builder().isSuccessful(true).msg("OK").build()));
     }
-
-    @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    ResponseEntity<Egress> handleConstraintViolationException(ConstraintViolationException e) {
-        return new ResponseEntity<>(Egress.builder()
-                .isSuccessful(false)
-                .msg("not valid due to validation error: " + e.getMessage())
-                .build(), HttpStatus.BAD_REQUEST);
-    }
-
 
 }

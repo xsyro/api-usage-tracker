@@ -1,9 +1,9 @@
-package com.xsyro.jamiu.services.impl;
+package com.xsyro.jamiu.service.impl;
 
 import com.xsyro.jamiu.exception.InvalidIngressException;
-import com.xsyro.jamiu.payload.Egress;
-import com.xsyro.jamiu.payload.Ingress;
-import com.xsyro.jamiu.services.IngressService;
+import com.xsyro.jamiu.model.Egress;
+import com.xsyro.jamiu.model.Ingress;
+import com.xsyro.jamiu.service.IngressService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -13,20 +13,10 @@ public class IngressServiceImpl implements IngressService {
 
     @Override
     public Mono<Egress> ingestData(Ingress ingress) {
-        return this.validate(ingress)
-                .flatMap(isValid -> {
-                    if (!isValid) {
-                        return Mono.error(new InvalidIngressException("Invalid Request"));
-                    }
-                    return Mono.empty();
-                });
+        return Mono.empty();
 
     }
 
 
-    private Mono<Boolean> validate(Ingress ingress) {
-
-        return Mono.just(true);
-    }
 
 }
