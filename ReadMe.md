@@ -1,6 +1,13 @@
 # API Billing Service
 This service is tasked with furnishing billing records to customers for their API usage.
 
+## Tech Stacks
+1. Java 17 
+2. Spring WebFlux
+2. Docker
+2. RabbitMQ
+3. H2-Database Engine
+
 ## Approach
 1. **Identify Data Sources:** Determine which HTTP services are responsible for generating data relevant to our billing system. This could include our API service for IP to location lookup, as well as any other services that generate usage data
 2. **Standardize Data Format:** Ensure that all HTTP services produce data in a standardized format that can be easily processed and aggregated. In this case, we choose JSON data format which is commonly used for inter-service communication
@@ -53,5 +60,9 @@ router.post('/my-service/ip-2-location-look-up', logMiddleware, (req, res) => {
 
 #### How to Run
 Point your terminal `cwd` to the project root directory and run `mvn spring-boot:run`
+
+### How to Fetch Customer Billing Report
+
+`GET http://127.0.0.1:8081/report/{customerId}`
 
 That's it! 
