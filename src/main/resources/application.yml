@@ -2,6 +2,12 @@ server:
   port: 8081
 
 spring:
+  amqp:
+    deserialization:
+      trust-all: true
+  jpa:
+    hibernate:
+      ddl-auto: create
   docker:
     compose:
       enabled: true
@@ -16,6 +22,9 @@ spring:
     port: 5673
     username: guest
     password: guest
+  h2:
+    console:
+      enabled: true
 
 exchange:
   queues:

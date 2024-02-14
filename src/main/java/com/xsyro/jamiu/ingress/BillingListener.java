@@ -1,7 +1,7 @@
 package com.xsyro.jamiu.ingress;
 
 import com.xsyro.jamiu.model.Egress;
-import com.xsyro.jamiu.model.Ingress;
+import com.xsyro.jamiu.model.IngressEnvelope;
 import com.xsyro.jamiu.service.IngressService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +22,8 @@ public class BillingListener {
     }
 
     @PostMapping("/ingest")
-    private Mono<ResponseEntity<Egress>> ingest(@Valid @RequestBody Ingress ingress) {
-        return ingressService.ackBilling(ingress)
+    private Mono<ResponseEntity<Egress>> ingest(@Valid @RequestBody IngressEnvelope ingressEnvelope) {
+        return ingressService.ackBilling(ingressEnvelope)
                 .map(egress -> egress.getIsSuccessful() ? ResponseEntity.ok(egress) : ResponseEntity.badRequest().body(egress));
     }
 
