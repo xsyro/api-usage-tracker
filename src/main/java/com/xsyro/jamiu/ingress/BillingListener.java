@@ -1,7 +1,7 @@
-package com.xsyro.jamiu.controller;
+package com.xsyro.jamiu.ingress;
 
 import com.xsyro.jamiu.model.Egress;
-import com.xsyro.jamiu.model.Ingress;
+import com.xsyro.jamiu.model.IngressEnvelope;
 import com.xsyro.jamiu.service.IngressService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +13,18 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/v1/api/api-billing")
-public class HttpController {
+public class BillingListener {
     private final IngressService ingressService;
 
 
-    public HttpController(IngressService ingressService) {
+    public BillingListener(IngressService ingressService) {
         this.ingressService = ingressService;
     }
 
     @PostMapping("/ingest")
-    private Mono<ResponseEntity<Egress>> ingest(@Valid @RequestBody Ingress ingress) {
-//        ingressService.ingestData(ingress)
-//                .onErrorReturn(throwable ->)
-        return Mono.just(ResponseEntity.ok(Egress.builder().isSuccessful(true).msg("OK").build()));
+    private Mono<ResponseEntity<Egress>> ingest(@Valid @RequestBody IngressEnvelope ingressEnvelope) {
+        return ingressService.ackBilling(ingressEnvelope)
+                .map(egress -> egress.getIsSuccessful() ? ResponseEntity.ok(egress) : ResponseEntity.badRequest().body(egress));
     }
 
 }

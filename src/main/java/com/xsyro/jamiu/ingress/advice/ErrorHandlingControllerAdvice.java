@@ -1,4 +1,4 @@
-package com.xsyro.jamiu.controller.advice;
+package com.xsyro.jamiu.ingress.advice;
 
 
 import com.xsyro.jamiu.model.ValidationErrorResponse;

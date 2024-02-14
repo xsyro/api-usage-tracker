@@ -1,0 +1,31 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    url: jdbc:h2:mem:api-billing-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5673
+    username: guest
+    password: guest
+  h2:
+    console:
+      enabled: true
+
+exchange:
+  queues:
+    billing-service:
+      exchange: billing
+      routing-key: billing-service #direct
+
