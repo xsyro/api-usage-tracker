@@ -31,6 +31,10 @@ public class RabbitMqConfig {
         return Mono.fromCallable(() -> connectionFactory.newConnection("reactor-rabbit")).cache();
     }
 
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
+    }
 
     @Bean
     public MessageConverter jsonToMapMessageConverter(ObjectMapper objectMapper) {

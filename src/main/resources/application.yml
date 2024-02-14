@@ -2,9 +2,6 @@ server:
   port: 8081
 
 spring:
-  amqp:
-    deserialization:
-      trust-all: true
   jpa:
     hibernate:
       ddl-auto: create

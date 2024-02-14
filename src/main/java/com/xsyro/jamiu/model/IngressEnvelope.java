@@ -13,19 +13,17 @@ import java.util.Map;
 @Data
 public class IngressEnvelope implements Serializable {
     @NotNull
-    private Integer customerId;
-
-
+    private Long timestamp;
     @NotNull
-    private String scope;
-    @Min(100)
-    private Integer httpStatusCode;
+    private Integer customerId;
+    @NotNull
+    private String serviceTag;
     @URL
     private String endpoint;
-    @NotNull
-    private Long timestamp;
-    private Long responseMillis;
-
     @Nullable
     private Map<String, Object> extras = new HashMap<>();
+
+    //NOT TO BE PROVIDED IN HTTP REQUEST-BODY
+    //This is for trace purpose only
+    private Long session;
 }

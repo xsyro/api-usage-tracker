@@ -3,7 +3,7 @@ package com.xsyro.jamiu.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 @Data
@@ -18,11 +18,16 @@ public class UsageActivityLog {
     @Id
     private Long id;
     private Date createdAt = new Date(currentMillis);
-    private Date updatedAt = new Date(currentMillis);
+    private Date updatedAt;
     private Date deletedAt;
     private Integer customerId;
 
 
+
     @Column(nullable = false)
-    private String scope;
+    private String serviceTag;
+    private String extras;
+    private Date requestTime;
+    private String url;
+    private Long sessionRef;//for trace purpose only
 }

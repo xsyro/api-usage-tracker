@@ -9,6 +9,7 @@ public class Egress {
     String code;
     Boolean isSuccessful;
     String msg;
+    Long session;
 
 
 
