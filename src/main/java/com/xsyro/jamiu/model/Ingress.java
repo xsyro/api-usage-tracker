@@ -6,10 +6,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
-public class Ingress {
+public class Ingress implements Serializable {
     @NotNull
     private Integer customerRef;
 

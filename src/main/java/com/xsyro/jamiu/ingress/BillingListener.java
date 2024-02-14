@@ -23,10 +23,8 @@ public class BillingListener {
 
     @PostMapping("/ingest")
     private Mono<ResponseEntity<Egress>> ingest(@Valid @RequestBody Ingress ingress) {
-        return ingressService.ingestBillingData(ingress)
-                .map(ResponseEntity::ok)
-                .onErrorMap(throwable -> (Throwable) ResponseEntity.badRequest())
-                .log();
+        return ingressService.ackBilling(ingress)
+                .map(egress -> egress.getIsSuccessful() ? ResponseEntity.ok(egress) : ResponseEntity.badRequest().body(egress));
     }
 
 }

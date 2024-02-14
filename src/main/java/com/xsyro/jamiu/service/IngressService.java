@@ -6,6 +6,6 @@ import com.xsyro.jamiu.model.Ingress;
 import reactor.core.publisher.Mono;
 
 public interface IngressService {
-    Mono<Egress> ingestBillingData(Ingress ingress);
+    Mono<Egress> ackBilling(Ingress ingress);
 
 }

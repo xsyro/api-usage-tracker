@@ -2,6 +2,7 @@ package com.xsyro.jamiu.config;
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import lombok.Data;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Mono;
@@ -31,5 +32,6 @@ public class ReactiveRabbitMqConfig {
     public Sender sender(SenderOptions senderOptions) {
         return RabbitFlux.createSender(senderOptions);
     }
+
 
 }
