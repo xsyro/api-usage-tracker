@@ -51,4 +51,7 @@ router.post('/my-service/ip-2-location-look-up', logMiddleware, (req, res) => {
 });
 ````
 
-That's it!
+#### How to Run
+Point your terminal `cwd` to the project root directory and run `mvn spring-boot:run`
+
+That's it! 
